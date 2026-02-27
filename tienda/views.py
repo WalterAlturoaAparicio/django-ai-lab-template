@@ -1,28 +1,15 @@
-from django.views.generic import TemplateView
-import requests
-import random
+from django.shortcuts import get_object_or_404, render
+from tienda.models import Pokemon
 
 
-class PokemonListView(TemplateView):
-    template_name = "tienda/index.html"
+def home(request):
+    return render(request, "tienda/home.html", {})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+def list_pokemons(request):
+    pokemons = Pokemon.objects.all().order_by("nombre")
+    return render(request, "tienda/list_pokemons.html", {"pokemons": pokemons})
 
-        url = "https://pokeapi.co/api/v2/pokemon?limit=1025"
-        response = requests.get(url)
-        data = response.json()
-
-        pokemons = []
-
-        for pokemon in data["results"]:
-            pokemon_id = pokemon["url"].split("/")[-2]
-
-            pokemons.append({
-                "nombre": pokemon["name"].capitalize(),
-                "precio": random.randint(100, 500),
-                "imagen": f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon_id}.png"
-            })
-
-        context["pokemons"] = pokemons
-        return context
+def pokemon_detail(request, pk):
+    poke = get_object_or_404(Pokemon, pk=pk)
+    return render(request, "tienda/pokemon_detail.html", {"pokemon": poke})
+    

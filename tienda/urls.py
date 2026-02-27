@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import PokemonListView
 
 from . import views
+app_name = "tienda"
 
 urlpatterns = [
-    path("", PokemonListView.as_view(), name="index"),
+    path("", views.home, name="index"),
+    path("pokemons/", views.list_pokemons, name="list_pokemons"),
+    path("pokemons/<int:pk>/", views.pokemon_detail, name="pokemon_detail")
 ]

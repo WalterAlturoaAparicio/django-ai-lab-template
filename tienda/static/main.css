@@ -1,0 +1,51 @@
+/*body {
+    font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+    color: #e84d13;
+}
+*/
+a {
+    text-decoration: none;
+    color: #333;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: none;
+}
+nav a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+.pokemon {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+img {
+    width: 100px;
+}
+
+button {
+    background: #ffcc00;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}

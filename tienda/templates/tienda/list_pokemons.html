@@ -5,16 +5,16 @@
 {% endblock %}
 {% block content %}
   <h1>🛒 Tienda Pokémon</h1>
+  <p>
+    <a href="{% url 'tienda:create_pokemon' %}">Nuevo pokemon</a>
+  </p>
   {% for pokemon in pokemons %}
     <div class="pokemon">
       <h3>{{ pokemon.nombre }}</h3>
       <img src="{{ pokemon.imagen }}" alt="{{ pokemon.nombre }}" />
-      <br>
+      <br />
       {% comment %} <p>Precio: ${{ pokemon.precio }}</p> {% endcomment %}
-      <button><a href="/pokemons/{{ pokemon.pk }}">
-        Detalles
-      </a> 
-    </button>
+      <button><a href="/pokemons/{{ pokemon.pk }}">Detalles</a></button>
     </div>
   {% endfor %}
 {% endblock %}

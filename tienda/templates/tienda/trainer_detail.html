@@ -1,0 +1,21 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Cliente {{ entrenador.nombre }}
+{% endblock %}
+{% block content %}
+  <h1>{{ entrenador.nombre }}</h1>
+  <h2>{{ entrenador.email }}</h2>
+    <h2>Cliente</h2>
+    {% for pedido in pedidos %}
+     <div class="pokemon">
+      <a href="{% url 'tienda:order_detail' pedido.id %}">Pedido # {{ pedido.id }}</a>
+      - Estado: {{ pedido.estado }}
+      - Fecha: {{ pedido.fecha|date:'d/m/Y' }}
+      - Productos: {{ pedido.total_pokemons.count }}
+    </div>
+  {% empty %}
+    <div class="pokemon">No hay pedidos aún</div>
+  {% endfor %}
+  
+{% endblock %}

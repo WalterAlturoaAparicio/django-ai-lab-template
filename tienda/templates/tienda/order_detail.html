@@ -1,0 +1,23 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Pedido # {{ pedido.id }}
+{% endblock %}
+{% block content %}
+  <h1>🛒 Tu pedido pokemon esta {{ pedido.estado }}</h1>
+    <h2>
+        Pedido de {{ pedido.cliente.nombre }}
+    </h2>
+    {% for pokemon in pedido.pokemons.all %}
+    <div class="pokemon">
+      <h3>{{ pokemon.nombre }}</h3>
+      <img src="{{ pokemon.imagen }}" alt="{{ pokemon.nombre }}" />
+      <br>
+      <p>Precio: ${{ pokemon.precio }}</p>
+      <button><a href="/pokemons/{{ pokemon.id }}">
+        Detalles
+      </a> 
+    </button>
+    </div>
+  {% endfor %}
+{% endblock %}

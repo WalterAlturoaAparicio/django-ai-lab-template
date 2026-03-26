@@ -1,0 +1,21 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Insertar pokemon
+{% endblock %}
+{% block content %}
+  <h1>Insertar Pokemon</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Capturaló</button>
+  </form>
+  <p>
+    <a href="{% url 'tienda:list_pokemons' %}">Volver a la lista de pokemons</a>
+  </p>
+{% endblock %}
+{% block script %}
+  <script>
+    // Aquí puedes agregar JavaScript personalizado si es necesario
+  </script>
+{% endblock %}

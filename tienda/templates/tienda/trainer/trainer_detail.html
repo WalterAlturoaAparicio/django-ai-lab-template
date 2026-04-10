@@ -17,5 +17,11 @@
   {% empty %}
     <div class="pokemon">No hay pedidos aún</div>
   {% endfor %}
+  <p>
+    <a href="{% url 'tienda:edit_trainer' pk=entrenador.pk %}">Editar Cliente</a>
+  </p>
+  <p>
+    <a href="{% url 'tienda:delete_trainer' pk=entrenador.pk %}">Eliminar Cliente</a>
+  </p>
   
 {% endblock %}

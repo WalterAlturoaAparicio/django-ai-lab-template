@@ -1,0 +1,16 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Insertar entrenador
+{% endblock %}
+{% block content %}
+  <h1>Insertar Entrenador</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Registraló</button>
+  </form>
+  <p>
+    <a href="/">Volver al inicio</a>
+  </p>
+{% endblock %}

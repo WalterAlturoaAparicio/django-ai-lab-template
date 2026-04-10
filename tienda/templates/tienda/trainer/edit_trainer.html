@@ -1,0 +1,17 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Editar {{ entrenador.nombre }}
+{% endblock %}
+{% block content %}
+  <h1>Editar Entrenador {{ entrenador.nombre }} {{ entrenador.id }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+    <p>
+      <a href="{% url 'tienda:trainer_detail' pk=entrenador.pk %}">Volver al detalle</a>
+    </p>
+    
+{% endblock %}

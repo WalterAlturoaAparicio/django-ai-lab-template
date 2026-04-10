@@ -5,4 +5,7 @@
 {% endblock %}
 {% block content %}
   <h1>🛒 Bienvenido a la Tienda Pokémon</h1>
+  <a href="{% url 'tienda:create_pokemon' %}">Capturar Pokémon</a>
+  <br>
+  <a href="{% url 'tienda:create_trainer' %}">Registrate</a>
 {% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Pokemon # {{ pokemon.pk }}
+{% endblock %}
+{% block content %}
+  <h1>🛒 Tienda Pokémon</h1>
+  <div class="pokemon">
+    <h3>{{ pokemon.nombre }}</h3>
+    <img src="{{ pokemon.imagen }}" alt="{{ pokemon.nombre }}" />
+    <p>Precio: ${{ pokemon.precio }}</p>
+    <button>Comprar</button>
+  </div>
+
+  <p>
+    <a href="{% url 'tienda:edit_pokemon' pk=pokemon.pk %}">Editar Pokémon</a>
+  </p>
+  <p>
+    <a href="{% url 'tienda:delete_pokemon' pk=pokemon.pk %}">Eliminar Pokémon</a>
+  </p>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Pokemon
+from .models import Pokemon, Entrenador
 
 
 class PokemonForm(forms.ModelForm):
@@ -38,4 +38,18 @@ class PokemonForm(forms.ModelForm):
             }),
         }
     
+class TrainerForm(forms.ModelForm): 
+    class Meta: 
+        model = Entrenador 
+        fields = ['nombre', 'email']
+        widgets = {
+            'nombre': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del Entrenador'
+            }), 
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Email del Entrenador'
+            }),
+        }
 

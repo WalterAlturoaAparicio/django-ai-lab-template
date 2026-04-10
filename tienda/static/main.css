@@ -11,9 +11,11 @@ a {
     color: #333;
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: none;
 }
+
 nav a {
     margin-right: 10px;
     text-decoration: none;

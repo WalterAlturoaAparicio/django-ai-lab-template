@@ -1,0 +1,16 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Eliminar {{ entrenador.nombre }}
+{% endblock %}
+{% block content %}
+  <h1>Eliminar Entrenador {{ entrenador.nombre }} {{ entrenador.id }}</h1>
+  <p>¿Estás seguro de que quieres eliminar este Entrenador?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+  </form>
+  
+
+  <a href="{% url 'tienda:trainer_detail' pk=entrenador.pk %}">Cancelar</a>
+{% endblock %}

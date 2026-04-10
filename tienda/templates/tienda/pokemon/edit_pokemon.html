@@ -1,0 +1,16 @@
+{% extends 'tienda/index.html' %}
+
+{% block title %}
+  🛒 Editar {{ pokemon.nombre }}
+{% endblock %}
+{% block content %}
+  <h1>Editar Pokémon {{ pokemon.nombre }} {{ pokemon.id }}</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+  </form>
+    <p>
+      <a href="{% url 'tienda:pokemon_detail' pk=pokemon.pk %}">Volver al detalle</a>
+    </p>
+{% endblock %}

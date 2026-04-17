@@ -39,3 +39,16 @@ class Pedido(models.Model):
 
     def __str__(self):
         return f"Pedido #{self.pk} <{self.cliente.nombre} ({self.estado})>"
+
+
+class PedidoItem(models.Model):
+    pedido = models.ForeignKey(Pedido, on_delete=models.CASCADE, related_name="items")
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, related_name="items")
+    cantidad = models.PositiveIntegerField(default=1)
+    precio_unitario = models.DecimalField(max_digits=8, decimal_places=2)
+
+    class Meta:
+        unique_together = ("pedido", "pokemon")
+
+    def __str__(self):
+        return f"{self.cantidad} x {self.pokemon.nombre} (Pedido #{self.pedido.pk})"

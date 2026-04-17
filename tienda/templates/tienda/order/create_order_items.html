@@ -1,0 +1,27 @@
+{% extends 'tienda/index.html' %}
+{% block title %}
+  🛒 Nuevo Pedido
+{% endblock %}
+{% block content %}
+  <h1>Nuevo Pedido</h1>
+  <form method="post">
+    {% csrf_token %}
+    <fieldset>
+      <legend>Datos del Pedido</legend>
+      {{ form.as_p }}
+    </fieldset>
+    <fieldset>
+      <legend>Items</legend>
+      {% for form in formset %}
+        <div class="form-group">
+          {{ form.as_p }}
+          {% if form.instance.pk %}
+            <label for="{{ form.prefix }}-DELETE">{{ form.DELETE }}</label>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </fieldset>
+    <button type="submit" class="button">Guardar</button>
+    <a href="{% url 'tienda:list_pedido' %}">Cancelar</a>
+  </form>
+{% endblock %}

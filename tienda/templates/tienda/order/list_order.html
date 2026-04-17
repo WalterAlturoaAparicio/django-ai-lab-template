@@ -5,20 +5,19 @@
 {% endblock %}
 {% block content %}
   <h1>Pedidos</h1>
+  <a href="{% url 'tienda:create_order_items' %}" class="button">Nuevo Pedido</a>
+  <hr />
   {% for p in pedidos %}
     <div class="pokemon">
       <a href="{% url 'tienda:order_detail' p.id %}">Pedido # {{ p.id }}</a>
-      <br>
-      <a href="{% url 'tienda:detalle_cliente' p.cliente.id %}">
-        Cliente: {{ p.cliente.nombre }}
-      </a>
+      <br />
+      <a href="{% url 'tienda:trainer_detail' p.cliente.id %}">Cliente: {{ p.cliente.nombre }}</a>
       - Estado: {{ p.estado }}
       - Fecha: {{ p.fecha|date:'d/m/Y' }}
-      - Productos: {{ p.total_pokemons.count }}
+      - Productos: {{ p.total_pokemons|default:'0' }}
+      - Total: ${{ p.total_precio|default:'0.00' }}
     </div>
   {% empty %}
-    <div class="pokemon">
-        No hay pedidos aún
-    </div>
+    <div class="pokemon">No hay pedidos aún</div>
   {% endfor %}
 {% endblock %}

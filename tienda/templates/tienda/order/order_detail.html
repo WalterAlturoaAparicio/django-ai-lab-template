@@ -5,19 +5,31 @@
 {% endblock %}
 {% block content %}
   <h1>🛒 Tu pedido pokemon esta {{ pedido.estado }}</h1>
-    <h2>
-        Pedido de {{ pedido.cliente.nombre }}
-    </h2>
-    {% for pokemon in pedido.pokemons.all %}
-    <div class="pokemon">
-      <h3>{{ pokemon.nombre }}</h3>
-      <img src="{{ pokemon.imagen }}" alt="{{ pokemon.nombre }}" />
-      <br>
-      <p>Precio: ${{ pokemon.precio }}</p>
-      <button><a href="/pokemons/{{ pokemon.id }}">
-        Detalles
-      </a> 
-    </button>
-    </div>
-  {% endfor %}
+  <h2>Pedido de {{ pedido.cliente.nombre }}</h2>
+  {% if items %}
+    <table>
+      <thead>
+        <tr>
+          <th class="encabezado">Pokemon</th>
+          <th class="encabezado">Cantidad</th>
+          <th class="encabezado">Precio Unitario</th>
+          <th class="encabezado">Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in items %}
+          <tr>
+            <td>{{ item.pokemon.nombre }}</td>
+            <td>{{ item.cantidad }}</td>
+            <td>${{ item.precio_unitario }}</td>
+            <td>${{ item.cantidad|mul:item.precio_unitario }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <h3>Total: ${{ total }}</h3>
+  {% else %}
+    <p>Este pedido no tiene items aún.</p>
+  {% endif %}
+  <a href="{% url 'tienda:list_pedido' %}">Volver a la lista de pedidos</a>
 {% endblock %}

@@ -14,6 +14,9 @@ urlpatterns = [
     # Pedidos
     path("pedidos/", views.list_order, name="list_pedido"),
     path("pedidos/<int:pk>/", views.order_detail1, name="order_detail"),
+    path("pedidos/nuevo-items/", views.create_order_items, name="create_order_items"),
+    path("pedidos/<int:pk>/editar-items/", views.edit_order_items, name="edit_order"),
+    path("pedidos/<int:pk>/eliminar/", views.delete_order, name="delete_order"),
     # Clientes
     path("clientes/<int:pk>/", views.trainer_detail, name="trainer_detail"),
     path("clientes/nuevo/", views.create_trainer, name="create_trainer"),

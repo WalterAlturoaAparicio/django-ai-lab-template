@@ -55,10 +55,10 @@ class TrainerForm(forms.ModelForm):
         }
 
 
-class PedidoSimpleForm(forms.Form):
+class PedidoSimpleForm(forms.ModelForm):
     class Meta:
         model = Pedido
-        fields = ['entrenador', 'estado']
+        fields = ['cliente', 'estado']
 
 
 class PedidoItemsForm(forms.ModelForm):

@@ -35,7 +35,6 @@ class Pedido(models.Model):
     estado = models.CharField(max_length=7, default="CREADO", choices=ESTADOS)
     cliente = models.ForeignKey(
         Entrenador, on_delete=models.CASCADE, related_name="pedidos")
-    pokemons = models.ManyToManyField(Pokemon, related_name="pedidos")
 
     def __str__(self):
         return f"Pedido #{self.pk} <{self.cliente.nombre} ({self.estado})>"

@@ -21,11 +21,11 @@ def pokemon_detail(request, pk):
 
 def order_detail1(request, pk):
     order = get_object_or_404(
-        Pedido.objects.select_related(
-            "cliente").prefetch_related("items__pokemon"),
+        Pedido.objects.select_related("cliente").prefetch_related("items__pokemon"),
         pk=pk
     )
     items = order.items.all()
+    print(items)
     total_unidades = sum(item.cantidad for item in items)
     total_pedido = sum(item.cantidad * item.precio_unitario for item in items)
 
@@ -50,9 +50,13 @@ def list_order(request):
 
 def trainer_detail(request, pk):
     trainer = get_object_or_404(
-        Entrenador.objects.prefetch_related("pedidos"), pk=pk)
-    orders = trainer.pedidos.select_related(
-        "cliente").prefetch_related("pokemons").order_by("fecha")
+        Entrenador.objects.prefetch_related("pedidos"),
+        pk=pk
+    )
+
+    orders = trainer.pedidos.select_related("cliente") \
+        .prefetch_related("items__pokemon") \
+        .order_by("fecha")
     return render(
         request,
         "tienda/trainer/trainer_detail.html",
@@ -147,12 +151,9 @@ def create_order_items(request):
         if form.is_valid():
             order = form.save()
             formset = PedidoItemFormSet(request.POST, instance=order)
-            if formset.is_valid():
-                formset.save()
-                return redirect("tienda:order_detail", pk=order.pk)
-        else:
-            form = Pedido()
-            formset = PedidoItemFormSet(instance=order)
+        if formset.is_valid():
+            formset.save()
+            return redirect("tienda:order_detail", pk=order.pk)
     else:
         form = PedidoSimpleForm()
         formset = PedidoItemFormSet()

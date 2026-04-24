@@ -22,12 +22,15 @@
             <td>{{ item.pokemon.nombre }}</td>
             <td>{{ item.cantidad }}</td>
             <td>${{ item.precio_unitario }}</td>
-            <td>${{ item.cantidad|mul:item.precio_unitario }}</td>
+            <td>${{ item.subtotal }}</td>
           </tr>
         {% endfor %}
       </tbody>
     </table>
-    <h3>Total: ${{ total }}</h3>
+    <h3>Total: ${{ total_pedido }}</h3>
+    <a href="{% url 'tienda:edit_order' pk=pedido.pk %}">Editar</a>
+    <a href="{% url 'tienda:' %}"></a>
+    <br>
   {% else %}
     <p>Este pedido no tiene items aún.</p>
   {% endif %}

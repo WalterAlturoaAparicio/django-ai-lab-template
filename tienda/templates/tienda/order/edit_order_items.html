@@ -1,9 +1,9 @@
 {% extends 'tienda/index.html' %}
 {% block title %}
-  🛒 Nuevo Pedido
+  🛒 Editar Pedido {{ order.id }}
 {% endblock %}
 {% block content %}
-  <h1>Nuevo Pedido</h1>
+  <h1>Editar Pedido {{ order.id }}</h1>
   <form method="post">
     {% csrf_token %}
     <fieldset>
